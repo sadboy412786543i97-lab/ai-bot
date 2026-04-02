@@ -1,0 +1,6 @@
+.cache/
+.pyenv/
+.storage/
+storage/
+.ssh/
+.bash_history
