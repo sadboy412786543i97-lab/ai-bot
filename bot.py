@@ -1,15 +1,13 @@
 from telegram import Update
-from telegram.ext import Updater, CommandHandler, CallbackContext
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
-TOKEN = "APNA_BOT_TOKEN_DAL"
+TOKEN = "APNA_TOKEN_DAL"
 
-def start(update: Update, context: CallbackContext):
-    update.message.reply_text("Bot chal raha hai 🔥")
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("Bot chal raha hai 🔥")
 
-updater = Updater(TOKEN, use_context=True)
+app = ApplicationBuilder().token(TOKEN).build()
 
-dp = updater.dispatcher
-dp.add_handler(CommandHandler("start", start))
+app.add_handler(CommandHandler("start", start))
 
-updater.start_polling()
-updater.idle()
+app.run_polling()
